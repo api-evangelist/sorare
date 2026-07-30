@@ -1,19 +1,76 @@
 aid: sorare
 name: Sorare
-description: 'Sorare is a company surfaced as a portfolio company of benchmark and added to the API Evangelist
-  network as a stub for enrichment. Sector: crypto. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Sorare is a global fantasy sports platform for football (soccer), NBA basketball and
+  MLB baseball built on blockchain-based digital collectible player cards stored on
+  Ethereum and a StarkWare rollup. Its public developer surface is a single GraphQL API
+  at https://api.sorare.com/graphql covering cards, users, auctions, offers and real-time
+  subscriptions. The API supports JWT authentication (via the signIn mutation, with TOTP
+  2FA), OAuth 2.0 (Authorization Code and Client Credentials), and optional API keys for
+  elevated rate limits, plus StarkWare payload signing for on-chain trading actions.
 url: https://raw.githubusercontent.com/api-evangelist/sorare/refs/heads/main/apis.yml
 x-type: company
 x-source: benchmark-portfolio
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://sorare.com/favicon.ico
 tags:
 - Company
 - Crypto
-apis: []
+- GraphQL
+- Fantasy Sports
+- NFT
+- Blockchain
+- Gaming
+- Sports
+- Web3
+apis:
+- name: Sorare GraphQL API
+  description: >-
+    Single GraphQL endpoint exposing Sorare cards, users, auctions, offers and real-time
+    subscriptions across football, NBA and MLB, with JWT / OAuth 2.0 / API-key auth.
+  humanURL: https://github.com/sorare/api
+  baseURL: https://api.sorare.com/graphql
+  tags:
+  - GraphQL
+  - Fantasy Sports
+  - Blockchain
+  properties:
+  - type: GraphQL
+    url: https://api.sorare.com/graphql
+  - type: Documentation
+    url: https://github.com/sorare/api
+  - type: Authentication
+    url: authentication/sorare-authentication.yml
+  - type: OAuthScopes
+    url: scopes/sorare-scopes.yml
+  - type: RateLimits
+    url: rate-limits/sorare-rate-limits.yml
+  - type: Conventions
+    url: conventions/sorare-conventions.yml
+  - type: Webhooks
+    url: asyncapi/sorare-graphql-asyncapi.yml
+  - type: Lifecycle
+    url: lifecycle/sorare-lifecycle.yml
+  - type: Conformance
+    url: conformance/sorare-conformance.yml
+  - type: MCPServer
+    url: mcp/sorare-mcp.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -22,3 +79,54 @@ maintainers:
 common:
 - type: Website
   url: https://sorare.com
+- type: Documentation
+  url: https://github.com/sorare/api
+- type: APIReference
+  url: https://api.sorare.com/graphql/playground
+- type: GitHubOrganization
+  url: https://github.com/sorare
+- type: Support
+  url: https://help.sorare.com
+- type: SignUp
+  url: https://sorare.com/signup
+- type: TermsOfService
+  url: https://sorare.com/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://sorare.com/privacy-policy
+- type: Authentication
+  url: authentication/sorare-authentication.yml
+- type: OAuthScopes
+  url: scopes/sorare-scopes.yml
+- type: RateLimits
+  url: rate-limits/sorare-rate-limits.yml
+- type: Conventions
+  url: conventions/sorare-conventions.yml
+- type: Packages
+  url: packages/sorare-packages.yml
+- type: SDKs
+  url: packages/sorare-packages.yml
+- type: WellKnown
+  url: well-known/sorare-well-known.yml
+- type: SecurityTxt
+  url: well-known/sorare-security.txt
+- type: VulnerabilityDisclosure
+  url: security/sorare-vulnerability-disclosure.yml
+- type: Security
+  url: https://sorare.com/.well-known/security.txt
+- type: Webhooks
+  url: asyncapi/sorare-graphql-asyncapi.yml
+- type: Lifecycle
+  url: lifecycle/sorare-lifecycle.yml
+- type: Conformance
+  url: conformance/sorare-conformance.yml
+- type: MCPServer
+  url: mcp/sorare-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/sorare-llms.txt
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
