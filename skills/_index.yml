@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: generated
+source: https://github.com/sorare/api
+api: https://api.sorare.com/graphql
+skills:
+  - file: sorare-sign-in.md
+    name: Sign in to the Sorare API and query your account
+    api: https://api.sorare.com/graphql
+    operations: [signIn, currentUser]
+  - file: sorare-buy-a-card.md
+    name: Bid on an auction or make an offer for a Sorare card
+    api: https://api.sorare.com/graphql
+    operations: [auctions, card, bid, createSingleSaleOffer, createDirectOffer, acceptOffer]
+notes:
+  - Skills are grounded in the GraphQL operations documented at github.com/sorare/api.
+    Sorare publishes no OpenAPI; operation names are the real documented GraphQL
+    queries/mutations. Verify field selections against the live schema before executing.

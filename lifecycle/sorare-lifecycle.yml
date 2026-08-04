@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/sorare/api
+api: GraphQL (https://api.sorare.com/graphql)
+versioning:
+  scheme: none
+  current: null
+  docs: https://github.com/sorare/api
+  note: >-
+    No versioned API paths. The GraphQL schema evolves continuously and is downloadable
+    from https://api.sorare.com/graphql/schema.
+deprecation:
+  mechanism: graphql-deprecated-directive
+  policy_url: null
+  sunset_header: false
+  note: >-
+    Field-level deprecation is signaled with the GraphQL `@deprecated` directive in the
+    schema. No separate written deprecation policy or RFC 8594 Sunset/Deprecation HTTP
+    headers were found.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+notes:
+  - No public status page (status.sorare.com) or SLA was confirmed at enrichment time;
+    lifecycle signaling is limited to in-schema @deprecated markers.

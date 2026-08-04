@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/sorare/api
+spec_type: Webhooks
+surface: graphql-subscriptions
+transport:
+  protocol: ActionCable (WebSocket)
+  over: GraphQL subscriptions
+  clients:
+    - "@sorare/actioncable (npm)"
+    - "gqlactioncable (pypi)"
+events:
+  - name: cardUpdated
+    description: Emitted when a card's state changes.
+    subscription: aCard
+  - name: userUpdated
+    description: Emitted when a user's state changes.
+    subscription: currentUser / aUser
+  - name: auctionUpdated
+    description: Emitted on auction lifecycle changes (new bids, close).
+    subscription: aAuction
+  - name: offerUpdated
+    description: Emitted when a direct/single-sale offer changes state.
+    subscription: aOffer
+limits:
+  anonymous_subscription: { max_depth: 7, max_complexity: 500 }
+  authenticated_subscription: { max_depth: 9, max_complexity: 1500 }
+notes:
+  - Sorare exposes a real-time event surface via GraphQL subscriptions delivered over
+    ActionCable WebSockets rather than HTTP webhooks or a published AsyncAPI document.
+    Event/subscription names above are the documented subscription categories (card,
+    user, auction, offer updates); exact field selections are defined by the live schema
+    at https://api.sorare.com/graphql/schema.

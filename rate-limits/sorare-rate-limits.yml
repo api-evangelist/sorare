@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/sorare/api
+docs: https://github.com/sorare/api#rate-limiting
+api: GraphQL (https://api.sorare.com/graphql)
+signal:
+  http_status: 429
+  headers: [Retry-After]
+tiers:
+  - name: unauthenticated
+    limit_count: 20
+    window: 1 minute
+  - name: authenticated
+    limit_count: 60
+    window: 1 minute
+    applies_to: JWT or OAuth authenticated requests
+  - name: api-key
+    limit_count: 600
+    window: 1 minute
+    applies_to: requests bearing an APIKEY header
+  - name: nba-mlb
+    limit_count: 150
+    window: 1 minute
+    applies_to: NBA / MLB card queries (fixed regardless of auth tier)
+concurrency:
+  inflight_queries: 40
+complexity_limits:
+  - caller: anonymous-call
+    max_depth: 7
+    max_complexity: 500
+  - caller: anonymous-subscription
+    max_depth: 7
+    max_complexity: 500
+  - caller: authenticated-call
+    max_depth: 12
+    max_complexity: 30000
+  - caller: authenticated-subscription
+    max_depth: 9
+    max_complexity: 1500
+notes:
+  - Being a GraphQL API, Sorare enforces query depth and complexity ceilings in addition
+    to per-minute request rate limits; exceeding the request rate returns HTTP 429 with a
+    Retry-After header.

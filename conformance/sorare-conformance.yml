@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: derived
+source: https://github.com/sorare/api
+standards:
+  - id: graphql
+    conforms: true
+    evidence: API is served as GraphQL at https://api.sorare.com/graphql with a downloadable schema.
+  - id: relay-cursor-connections
+    conforms: true
+    evidence: List fields use GraphQL Relay-style cursor connections (first/after/edges/pageInfo).
+  - id: oauth2
+    conforms: true
+    evidence: OAuth 2.0 Authorization Code and Client Credentials grants with authorize/token/revoke endpoints.
+  - id: oauth2-token-revocation-rfc7009
+    conforms: true
+    evidence: Token revocation endpoint at https://api.sorare.com/oauth/revoke.
+  - id: jwt-rfc7519
+    conforms: true
+    evidence: signIn mutation issues bearer JWTs (30-day validity) sent as Authorization Bearer + JWT-AUD.
+  - id: totp-2fa-rfc6238
+    conforms: true
+    evidence: signIn supports otpSessionChallenge / otpAttempt one-time codes.
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: sorare.com publishes /.well-known/security.txt.
+  - id: oidc-discovery
+    conforms: false
+    evidence: No /.well-known/openid-configuration on api.sorare.com.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use the native GraphQL errors[] envelope, not application/problem+json.
+  - id: rfc8594-deprecation-sunset
+    conforms: false
+    evidence: Deprecation is via GraphQL @deprecated directive; no Sunset/Deprecation headers.
+notes:
+  - Standards asserted here are derived from the documented Sorare GraphQL API behavior,
+    not from a published compliance/certification program. No Compliance pointer is
+    emitted because no SOC 2 / ISO 27001 / PCI trust program was found.

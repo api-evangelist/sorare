@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/sorare/api
+api: GraphQL (https://api.sorare.com/graphql)
+transport:
+  protocol: GraphQL over HTTPS
+  endpoint: https://api.sorare.com/graphql
+  playground: https://api.sorare.com/graphql/playground
+  schema_download: https://api.sorare.com/graphql/schema
+authentication:
+  styles: [JWT bearer, OAuth2, API key]
+  ref: authentication/sorare-authentication.yml
+idempotency:
+  supported: false
+  note: >-
+    Sorare does not document an idempotency-key mechanism. Mutations that touch the
+    blockchain (bids, offers) are made idempotent/authorized instead by client-side
+    Starkware signing of the specific payload; there is no HTTP idempotency-key header.
+pagination:
+  style: relay-cursor-connections
+  params: [first, after, last, before]
+  response_fields: [pageInfo.hasNextPage, pageInfo.endCursor, edges, nodes]
+  note: Standard GraphQL Relay-style cursor connections on list fields.
+error_envelope:
+  shape: graphql-errors
+  note: >-
+    Errors are returned in the top-level GraphQL `errors[]` array (message, path,
+    extensions) alongside partial `data`; HTTP status is typically 200 for GraphQL-level
+    errors and 429 for rate limiting.
+rate_limit_signaling:
+  http_status: 429
+  headers: [Retry-After]
+  ref: rate-limits/sorare-rate-limits.yml
+complexity:
+  enforced: true
+  note: Query depth + complexity ceilings per caller class — see rate-limits artifact.
+subscriptions:
+  supported: true
+  transport: ActionCable (WebSocket)
+  ref: asyncapi/sorare-graphql-asyncapi.yml
+versioning:
+  scheme: none
+  note: >-
+    No explicit API versioning; the GraphQL schema evolves continuously and can be
+    downloaded from https://api.sorare.com/graphql/schema. Deprecated fields are marked
+    with the GraphQL `@deprecated` directive in the schema.

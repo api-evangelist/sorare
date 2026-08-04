@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/sorare/api
+packages:
+  - language: javascript
+    registry: npm
+    name: "@sorare/crypto"
+    url: https://www.npmjs.com/package/@sorare/crypto
+    install: npm install @sorare/crypto
+    version: 3.0.1
+    license: MIT
+    official: true
+    description: >-
+      JavaScript helpers for signing blockchain payloads with a Starkware private key —
+      required to authorize bids and offers against the Sorare GraphQL API.
+  - language: javascript
+    registry: npm
+    name: "@sorare/actioncable"
+    url: https://www.npmjs.com/package/@sorare/actioncable
+    install: npm install @sorare/actioncable
+    version: 1.0.3
+    license: MIT
+    official: true
+    description: >-
+      TypeScript/JavaScript client for consuming Sorare GraphQL subscriptions over
+      ActionCable WebSockets (card, user, auction and offer updates).
+  - language: python
+    registry: pypi
+    name: gqlactioncable
+    url: https://pypi.org/project/gqlactioncable/
+    install: pip install gqlactioncable
+    version: 1.0.2
+    official: true
+    description: >-
+      Python ActionCable transport for the graphql-python/gql client, published by Sorare
+      for consuming GraphQL subscriptions from Python.

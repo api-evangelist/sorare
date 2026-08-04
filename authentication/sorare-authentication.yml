@@ -1,0 +1,56 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/sorare/api
+docs: https://github.com/sorare/api#authentication
+api: GraphQL (https://api.sorare.com/graphql)
+summary:
+  types: [http, oauth2, apiKey]
+  http_schemes: [bearer]
+  bearer_format: JWT
+  api_key_in: [header]
+  oauth2_flows: [authorizationCode, clientCredentials]
+  mfa: totp
+schemes:
+  - name: jwtBearer
+    type: http
+    scheme: bearer
+    bearer_format: JWT
+    description: >-
+      JWT obtained from the GraphQL `signIn` mutation. The client first fetches the
+      per-user bcrypt salt via GET https://api.sorare.com/api/v1/users/<email>, hashes
+      the password client-side, then calls `signIn` with a mandatory `aud` audience
+      identifier. Tokens are valid for 30 days and are sent as
+      `Authorization: Bearer <token>` together with a `JWT-AUD: <aud>` header.
+    token_lifetime: 30 days
+    two_factor:
+      supported: true
+      mechanism: totp
+      flow: >-
+        When 2FA is enabled, `signIn` returns an `otpSessionChallenge`; a second
+        `signIn` call supplies `otpSessionChallenge` plus a one-time `otpAttempt` code.
+  - name: oauth2
+    type: oauth2
+    description: >-
+      OAuth 2.0 for third-party apps acting on behalf of a Sorare user. Client ID and
+      secret are requested through the Sorare Help Center; a callback URL must be
+      registered. Access tokens are valid for 2 hours and are issued with a refresh token.
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://api.sorare.com/oauth/authorize
+        tokenUrl: https://api.sorare.com/oauth/token
+        refresh: true
+        access_token_lifetime: 2 hours
+      - flow: clientCredentials
+        tokenUrl: https://api.sorare.com/oauth/token
+    revocation_endpoint: https://api.sorare.com/oauth/revoke
+  - name: apiKey
+    type: apiKey
+    in: header
+    parameter_name: APIKEY
+    description: >-
+      Optional API key requested on demand for elevated rate limits (600 calls/minute
+      vs 60 for a standard authenticated caller). Sent as the `APIKEY` header.
+notes:
+  - Blockchain actions (bids, offers) additionally require signing payloads with a
+    Starkware private key via the @sorare/crypto library — this is a signing step, not
+    an API authentication scheme.

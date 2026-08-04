@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+hosts:
+  - host: https://sorare.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        file: sorare-security.txt
+  - host: https://api.sorare.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+notes:
+  - Only sorare.com publishes a security.txt (RFC 9116). The API host api.sorare.com
+    exposes no OIDC/OAuth discovery documents even though it runs OAuth 2.0 — endpoints
+    are documented in the GitHub docs repo rather than via .well-known metadata.

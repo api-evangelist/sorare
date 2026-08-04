@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/sorare/api
+docs: https://github.com/sorare/api#oauth
+api: GraphQL (https://api.sorare.com/graphql)
+schemes:
+  - name: oauth2
+    source: https://github.com/sorare/api
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://api.sorare.com/oauth/authorize
+        tokenUrl: https://api.sorare.com/oauth/token
+      - flow: clientCredentials
+        tokenUrl: https://api.sorare.com/oauth/token
+scopes:
+  - scope: default
+    description: >-
+      Single default scope granted to OAuth applications. Provides read access to basic
+      user information (nickname, avatar, wallet address), the user's cards, achievements
+      and favorites, and the user's auctions, offers and notifications.
+    flows: [authorizationCode, clientCredentials]
+    sources: [https://github.com/sorare/api]
+excluded_from_default_scope:
+  - Access to the user's email address
+  - Future / upcoming lineups
+  - Claiming rewards
+  - Bidding, selling or other write/trading operations
+notes:
+  - Sorare's OAuth model exposes a single coarse default scope rather than a granular
+    scope taxonomy; trading and reward actions are intentionally out of OAuth reach and
+    require JWT (user-owned) sessions plus Starkware signing.
