@@ -6,38 +6,43 @@ server:
   name: sorare
   transport: http
   url: null
-note: >-
-  No official hosted/remote Sorare MCP server was found. The tools below are a candidate
-  surface derived from the documented Sorare GraphQL operations; they are a starting
-  point for an MCP wrapper, not a published server.
+note: No official hosted/remote Sorare MCP server was found. The tools below are a candidate surface derived
+  from the documented Sorare GraphQL operations; they are a starting point for an MCP wrapper, not a published
+  server.
 tools:
-  - name: current_user
-    description: Fetch the authenticated user's profile, cards, achievements and favorites.
-    source_operation: graphql:query currentUser
-  - name: list_english_auctions
-    description: List open English auctions.
-    source_operation: graphql:query auctions
-  - name: get_card
-    description: Fetch a card by slug, including blockchain and gameplay data.
-    source_operation: graphql:query card
-  - name: get_football_cards
-    description: Query Football (Sorare) card data.
-    source_operation: graphql:query football
-  - name: get_baseball_cards
-    description: Query MLB / baseball card data.
-    source_operation: graphql:query baseball
-  - name: get_nba_cards
-    description: Query NBA / basketball card data.
-    source_operation: graphql:query nba
-  - name: bid_on_auction
-    description: Place a bid on an English auction (requires Starkware signature).
-    source_operation: graphql:mutation bid
-  - name: create_single_sale_offer
-    description: Create a Single Sale offer for a card.
-    source_operation: graphql:mutation createSingleSaleOffer
-  - name: create_direct_offer
-    description: Create a Direct offer to another user.
-    source_operation: graphql:mutation createDirectOffer
-  - name: accept_offer
-    description: Accept an incoming offer.
-    source_operation: graphql:mutation acceptOffer
+- name: current_user
+  description: Fetch the authenticated user's profile, cards, achievements and favorites.
+  source_operation: graphql:query currentUser
+- name: list_english_auctions
+  description: List open English auctions.
+  source_operation: graphql:query auctions
+- name: get_card
+  description: Fetch a card by slug, including blockchain and gameplay data.
+  source_operation: graphql:query card
+- name: get_football_cards
+  description: Query Football (Sorare) card data.
+  source_operation: graphql:query football
+- name: get_baseball_cards
+  description: Query MLB / baseball card data.
+  source_operation: graphql:query baseball
+- name: get_nba_cards
+  description: Query NBA / basketball card data.
+  source_operation: graphql:query nba
+- name: bid_on_auction
+  description: Place a bid on an English auction (requires Starkware signature).
+  source_operation: graphql:mutation bid
+- name: create_single_sale_offer
+  description: Create a Single Sale offer for a card.
+  source_operation: graphql:mutation createSingleSaleOffer
+- name: create_direct_offer
+  description: Create a Direct offer to another user.
+  source_operation: graphql:mutation createDirectOffer
+- name: accept_offer
+  description: Accept an incoming offer.
+  source_operation: graphql:mutation acceptOffer
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census
