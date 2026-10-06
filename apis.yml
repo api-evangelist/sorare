@@ -38,7 +38,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-10-06'
 image: https://sorare.com/favicon.ico
 tags:
 - Company
@@ -89,6 +89,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://sorare.com/blog/
+  type: Blog
 - type: Website
   url: https://sorare.com
 - type: Documentation
